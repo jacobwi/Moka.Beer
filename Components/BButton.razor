@@ -1,0 +1,31 @@
+@namespace Moka.Beer
+<button @onclick="InvokeParentMethod" class="@ChipCutton() @Size.GetEnumCssClass() @Color.GetEnumCssClass() @Theme.GetEnumCssClass() @Form.GetEnumCssClass()">
+    @ChildContent
+</button>
+
+@code {
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public Size Size { get; set; } = Size.Default;
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter] public Theme Theme { get; set; } = Theme.Default;
+    [Parameter] public Form Form { get; set; } = Form.Default;
+    [Parameter] public Direction Direction { get; set; } = Direction.Default;
+    [Parameter] public bool ChipButton { get; set; }
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    bool HasDelegate => OnClick.HasDelegate;
+
+    private async void InvokeParentMethod()
+    {
+        if (!OnClick.HasDelegate)
+            return;
+        await OnClick.InvokeAsync();
+    }
+
+    string ChipCutton()
+    {
+        return ChipButton ? "chip" : "";
+    }
+
+}

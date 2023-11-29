@@ -1,0 +1,32 @@
+@namespace Moka.Beer
+
+
+<div class="credit-card">
+    <div class="card-top">
+        <span class="credit-card-title">@Title</span>
+        <span class="bank-name">@BankName</span>
+    </div>
+    <div class="card-middle">
+        <div class="chip"></div>
+        <span class="card-number">@CardNumber</span>
+    </div>
+    <div class="card-bottom">
+        <span class="card-holder">@CardHolderName</span>
+        <span class="card-type">Platinum</span>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = "CREDIT CARD";
+
+    [Parameter] public string? BankName { get; set; }
+
+    [Parameter] public string? CardNumber { get; set; }
+
+    [Parameter] public string? CardHolderName { get; set; }
+
+    [Parameter] public string? ExpirationDate { get; set; }
+
+    [Parameter] public string? Style { get; set; }
+
+}

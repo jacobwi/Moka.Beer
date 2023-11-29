@@ -1,0 +1,55 @@
+@namespace Moka.Beer
+
+<div class="border toggle-container" @onclick="ToggleSwitch">
+    <div class="toggle-knob @ToggleClass"></div>
+</div>
+
+@code {
+    [Parameter] public bool IsToggled { get; set; }
+
+    [Parameter] public EventCallback<bool> OnChanged { get; set; }
+
+    private string ToggleClass => IsToggled ? "toggle-on" : "toggle-off";
+
+    private async Task ToggleSwitch()
+    {
+        IsToggled = !IsToggled;
+        await OnChanged.InvokeAsync(IsToggled);
+    }
+
+}
+
+<style>
+/* It's usually better to place CSS in a separate file,
+   but if you need it in the same file, keep it here. */
+
+.toggle-container {
+    width: 50px; /* Adjust as necessary */
+    height: 26px; /* Adjust as necessary */
+    background-color: var(--primary-container); /* Off state color */
+    border-radius: 25px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-knob {
+    width: 20px; /* Adjust as necessary */
+    height: 20px; /* Adjust as necessary */
+    background-color: var(--secondary); /* Knob color */
+    border-radius: 50%;
+    position: absolute;
+    top: 2px; /* Adjust based on container's height */
+    left: 2px; /* Adjust based on knob's width */
+    transition: transform 0.3s ease;
+}
+
+.toggle-on {
+    transform: translateX(24px); /* Adjust based on container's width */
+    background-color: var(--primary); /* On state color */
+}
+
+.toggle-off {
+    background-color: var(--tertiary); /* Off state color */
+    transform: translateX(0);
+}
+</style>

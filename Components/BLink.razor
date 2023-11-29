@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@namespace Moka.Beer
+@if (Href is "/" or "")
+{
+    <NavLink href="@Href" Match="NavLinkMatch.All">
+        @ChildContent
+    </NavLink>
+}
+else
+{
+    <NavLink href="@Href">
+        @ChildContent
+    </NavLink>
+}
+
+
+@code {
+    [Parameter] public string Href { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

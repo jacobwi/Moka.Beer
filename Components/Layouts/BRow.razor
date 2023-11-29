@@ -1,0 +1,12 @@
+@namespace Moka.Beer
+
+<div class="row @Alignement.GetEnumCssClass() @Space.GetEnumCssClass() @Size.GetEnumCssClass()">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public Alignment Alignement { get; set; } = Alignment.Default;
+    [Parameter] public Space Space { get; set; } = Space.Default;
+    [Parameter] public Size Size { get; set; } = Size.Default;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

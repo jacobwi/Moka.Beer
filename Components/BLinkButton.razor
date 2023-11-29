@@ -1,0 +1,24 @@
+@namespace Moka.Beer
+<a class="button @Theme.GetEnumCssClass() @Form.GetEnumCssClass()" href="@Href" target="@Target">
+    <i>
+        @if (Icon is not null)
+        {
+            @Icon.ToString()
+        }
+        @if (Image is not null)
+        {
+            <img src="@Image" alt="@Alt"/>
+        }
+    </i>
+</a>
+
+@code {
+    [Parameter] public string Href { get; set; } = string.Empty;
+    [Parameter] public string Target { get; set; } = "_self";
+    [Parameter] public Form Form { get; set; } = Form.Default;
+    [Parameter] public Theme Theme { get; set; } = Theme.Default;
+    [Parameter] public Icon? Icon { get; set; }
+    [Parameter] public string? Image { get; set; }
+    [Parameter] public string? Alt { get; set; } = string.Empty;
+
+}

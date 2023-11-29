@@ -1,0 +1,68 @@
+
+.credit-card {
+    width: 350px;
+    height: 200px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    font-family: 'Helvetica Neue', sans-serif;
+    background: #2c3e50 linear-gradient(25deg, #6a11cb 0%, #2575fc 100%);
+
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.credit-card-title, .bank-name {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.card-middle {
+    display: flex;
+    align-items: center;
+}
+
+.chip {
+    width: 40px;
+    height: 30px;
+    background-color: #feb236;
+    border-radius: 5px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.chip::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #f7f1e3;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card-number {
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-holder, .card-type {
+    font-size: 14px;
+    letter-spacing: 1px;
+}

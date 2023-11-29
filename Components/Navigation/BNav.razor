@@ -1,0 +1,12 @@
+﻿@namespace Moka.Beer
+
+
+<nav class="@Position.GetEnumCssClass() @Responsive.GetEnumCssClass()">
+    @ChildContent
+</nav>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public Position Position { get; set; } = Position.Default;
+    [Parameter] public Responsive Responsive { get; set; } = Responsive.Default;
+}
