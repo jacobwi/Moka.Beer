@@ -27,4 +27,8 @@
         <Folder Include="Common\Utilities\"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Templates\Clean8\Clean8.Shared\Clean8.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,11 +1,12 @@
 ﻿@namespace Moka.Beer
 
 
-<nav class="@Responsive.Large.GetEnumCssClass() @Responsive.Medium.GetEnumCssClass() @Position.GetEnumCssClass()">
+<nav class="@(IsDrawer ? "drawer" : "") surface-variant @Responsive.Large.GetEnumCssClass() @Responsive.Medium.GetEnumCssClass() @Position.GetEnumCssClass()">
     @ChildContent
 </nav>
 
 @code {
+    [Parameter] public bool IsDrawer { get; set; }
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public Position Position { get; set; } = Position.Left;
 }

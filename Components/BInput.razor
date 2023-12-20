@@ -1,0 +1,95 @@
+@namespace Moka.Beer
+@inherits MokaComponentBase
+<div class="@Class field @(ContainsLabel ? ContainsLabel.GetBoolCssClass(): "") @(IsInvalid ? IsInvalid.GetBoolCssClass() : "") @Alignment.GetEnumCssClass() @Position.GetEnumCssClass() @Size.GetEnumCssClass() @Form.GetEnumCssClass() ">
+    <input @onclick="OnClick" type="@Type" value="@Value" @oninput="OnInput" placeholder="@Placeholder"/>
+    @if(ContainsLabel)
+    {
+        <label>@Label</label>
+    }
+    @if (IsHelperText)
+    {
+        <span class="helper">@HelperText</span>
+    }
+
+    @if (IsInvalid && !string.IsNullOrEmpty(ErrorMessage))
+    {
+        <span class="error">@ErrorMessage</span>
+    }
+    
+    @if(IsLoading)
+    {
+        <progress class="circle"></progress>
+    }
+</div>
+
+@code {
+    
+    [Parameter] public InputType Type { get; set; } = InputType.Text;
+    [Parameter] public Size Size { get; set; } = Size.Default;
+    [Parameter] public Position Position { get; set; } = Position.Default;
+    [Parameter] public Alignment Alignment { get; set; } = Alignment.Default;
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter, CssClass("disabled")] public bool IsDisabled { get; set; }
+    [Parameter] public bool IsReadOnly { get; set; }
+    [Parameter] public bool IsRequired { get; set; }
+    [Parameter, CssClass("invalid")] public bool IsInvalid { get; set; }
+    [Parameter] public bool IsHelperText { get; set; }
+    [Parameter] public string HelperText { get; set; } = "";
+
+    [Parameter, CssClass("label")] public bool ContainsLabel { get; set; }
+    [Parameter] public bool IsLoading { get; set; }
+    [Parameter] public Form Form { get; set; } = Form.Fill; // Default form
+    [Parameter] public string Placeholder { get; set; } = "";
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string ErrorMessage { get; set; } = "";
+
+    private bool _isSvg;
+
+    [Parameter]
+    public bool IsSvg
+    {
+        get => _isSvg;
+        set
+        {
+            if (_isSvg == value) return; // Check to prevent recursive calls
+            _isSvg = value;
+            IsIcon = !value; // Set IsIcon to the inverse of IsSvg
+        }
+    }
+
+    private bool _isIcon = true; // Default value
+
+    [Parameter]
+    public bool IsIcon
+    {
+        get => _isIcon;
+        set
+        {
+            if (_isIcon == value) return; // Check to prevent recursive calls
+            _isIcon = value;
+            _isSvg = !value; // Set IsSvg to the inverse of IsIcon
+        }
+    }
+
+    [Parameter] public string SvgIcon { get; set; } = "";
+
+    [Parameter] public Icon Icon { get; set; } = new("");
+
+    [Parameter] public string? Value { get; set; } = string.Empty;
+
+    [Parameter] public EventCallback<string?> ValueChanged { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnClickEvent { get; set; }
+
+    private void OnInput(ChangeEventArgs e)
+    {
+        Value = e.Value?.ToString();
+        ValueChanged.InvokeAsync(Value);
+    }
+
+    private void OnClick(MouseEventArgs obj)
+    {
+        if (IsDisabled) return;
+        OnClickEvent.InvokeAsync(obj);
+    }
+
+}

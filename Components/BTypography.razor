@@ -1,5 +1,5 @@
 @namespace Moka.Beer
-
+@inherits MokaComponentBase
 @switch (Type)
 {
     case Typegraphy.H1:
@@ -28,7 +28,6 @@
 
 @code {
     [Parameter] public Typegraphy Type { get; set; } = Typegraphy.Paragraph;
-    [Parameter] public string AdditionalClasses { get; set; } = string.Empty;
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
     private string GetClasses()

@@ -1,9 +1,9 @@
 ﻿@namespace Moka.Beer
-<img class="@(this.GetCssClasses())" src="@Source" alt="@Alt"/>
+<img class="@Form.GetEnumCssClass() @Size.GetEnumCssClass()" src="@Source" alt="@Alt"/>
 
 @code {
     [Parameter] public Form Form { get; set; } = Form.Default;
     [Parameter] public string Source { get; set; } = "";
     [Parameter] public string Alt { get; set; } = "";
-
+    [Parameter] public Size Size { get; set; } = Size.Tiny;
 }

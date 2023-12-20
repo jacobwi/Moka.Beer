@@ -1,6 +1,6 @@
 @namespace Moka.Beer
-
-<i class="@Form.GetEnumCssClass() @Size.GetEnumCssClass()">
+@inherits MokaComponentBase
+<i class="@Form.GetEnumCssClass() @Size.GetEnumCssClass() @Color.GetEnumCssClass() @Class" style="@Style">
     @if (IsSvg)
     {
         <svg viewBox="@ViewBox">
@@ -10,7 +10,7 @@
             }
             else
             {
-                @ChildContent
+                @((MarkupString)SvgIcon)
             }
         </svg>
     }
@@ -30,17 +30,44 @@
 
 @code {
     [Parameter] public bool IsImage { get; set; }
-    [Parameter] public string ImageUrl { get; set; }
-    [Parameter] public bool IsSvg { get; set; }
+    [Parameter] public string ImageUrl { get; set; } = "";
+    private bool _isSvg;
+    [Parameter]
+    public bool IsSvg 
+    { 
+        get => _isSvg;
+        set
+        {
+            if (_isSvg == value) return; // Check to prevent recursive calls
+            _isSvg = value;
+            IsIcon = !value; // Set IsIcon to the inverse of IsSvg
+        } 
+    }
+
     [Parameter] public string ViewBox { get; set; } = "0 0 24 24";
     [Parameter] public bool UseHref { get; set; }
-    [Parameter] public string Href { get; set; }
-    [Parameter] public string Alt { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public string Alt { get; set; } = "";
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public Form Form { get; set; } = Form.Fill; // Default form
     [Parameter] public Size Size { get; set; } = Size.Medium; // Default size
-    [Parameter] public bool IsIcon { get; set; } = true;
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    private bool _isIcon = true; // Default value
+    [Parameter]
+    public bool IsIcon
+    {
+        get => _isIcon;
+        set
+        {
+            if (_isIcon == value) return; // Check to prevent recursive calls
+            _isIcon = value;
+            _isSvg = !value; // Set IsSvg to the inverse of IsIcon
+        }
+    }
+    [Parameter] public string SvgIcon { get; set; } = "";
 
     [Parameter] public Icon Icon { get; set; } = new("");
+    
 
 }

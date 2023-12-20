@@ -1,6 +1,6 @@
 @namespace Moka.Beer
-
-<div class="row @Alignement.GetEnumCssClass() @Space.GetEnumCssClass() @Size.GetEnumCssClass()">
+@inherits MokaComponentBase
+<div style="@Style" class="@Class row @Alignement.GetEnumCssClass() @Space.GetEnumCssClass() @Size.GetEnumCssClass()">
     @ChildContent
 </div>
 

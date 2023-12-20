@@ -1,5 +1,6 @@
 @namespace Moka.Beer
-<div class="@(Size.GetEnumCssClass())"></div>
+@inherits MokaComponentBase
+<div style="@Style" class="@Class @(Size.GetEnumCssClass())"></div>
 
 @code {
     [Parameter] public Divider Size { get; set; } = Divider.Divider;

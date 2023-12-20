@@ -1,0 +1,63 @@
+@namespace Moka.Beer
+
+@code {
+    [Parameter]
+    public RenderFragment? Summary { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public bool IsNested { get; set; }
+
+}
+
+@if (IsNested)
+{
+    <details class="nested-panel">
+    <summary class="none">
+       <article class="round primary no-elevate">
+         <nav>
+           <div class="max">@Summary</div>
+           <i>expand_more</i>
+         </nav>
+       </article>
+     </summary>
+        <div class="nested-content">
+            @ChildContent
+        </div>
+    </details>
+}
+else
+{
+    <details class="none">
+  <summary class="none">
+     <article class="no-elevate">
+       <nav>
+         <div class="max">@Summary</div>
+         <i>expand_more</i>
+       </nav>
+     </article>
+   </summary>
+        <CascadingValue Value="true" Name="IsNested">
+            @ChildContent
+        </CascadingValue>
+    </details>
+}
+
+@* Add your CSS styles here *@
+<style>
+    .top-level-panel > summary {
+        /* Styles for top-level summary */
+        
+    }
+
+    .nested-panel > summary {
+        /* Styles for nested summary */
+        
+    }
+
+    .nested-content {
+    
+    }
+</style>

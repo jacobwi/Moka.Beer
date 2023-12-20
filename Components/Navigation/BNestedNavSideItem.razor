@@ -1,0 +1,64 @@
+@using System.Reflection
+@using Clean8.Shared.Models
+@namespace Moka.Beer
+
+@if (MenuItems != null)
+{
+    @foreach (var item in MenuItems)
+    {
+        <BLink Href="@item.Url">
+            <BIcon IsSvg SvgIcon="@GetIconValue(item.Icon)"></BIcon>
+            <span>@item.Title</span>
+        </BLink>
+
+        @if (item.HasChildren)
+        {
+            <div class="nav-submenu">
+                <BNestedNavSideItem MenuItems="@item.SubItems"/>
+            </div>
+        }
+    }
+}
+
+@code {
+    [Parameter] public List<MenuItem> MenuItems { get; set; }
+
+    private string? GetIconValue(string iconName)
+    {
+        // Split the string into its components
+        var parts = iconName.Split('.');
+
+        if (parts.Length != 3)
+        {
+            throw new ArgumentException("The iconName format is not correct.");
+        }
+
+        // Access the nested properties using reflection
+        var currentType = typeof(Icons);
+
+        // Get the type for "Custom" (or whatever is the first part)
+        var iconType = currentType.GetNestedType(parts[0]);
+        if (iconType == null)
+        {
+            throw new ArgumentException($"No nested type named {parts[0]} found.");
+        }
+
+        // Get the type for "Outlined" (or whatever is the second part)
+        var designType = iconType.GetNestedType(parts[1]);
+        if (designType == null)
+        {
+            throw new ArgumentException($"No nested type named {parts[1]} found within {parts[0]}.");
+        }
+
+        // Get the field "Abc" (or whatever is the third part)
+        var iconField = designType.GetField(parts[2], BindingFlags.Public | BindingFlags.Static);
+        if (iconField == null)
+        {
+            throw new ArgumentException($"No field named {parts[2]} found within {parts[1]}.");
+        }
+
+        // Retrieve the value of the field
+        return iconField.GetValue(null)?.ToString(); // null because it's a static field
+    }
+
+}

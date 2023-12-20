@@ -1,0 +1,58 @@
+@namespace Moka.Beer
+@inherits MokaComponentBase
+
+<div class="field large prefix round fill">
+    <div class="d-flex flex-column">
+        
+    </div>
+    <i class="front">search</i>
+    <input @bind="SearchText" @placeholder="@Placeholder">
+    <menu class="min">
+        <div class="field large prefix suffix no-margin fixed">
+            <i class="front">arrow_back</i>
+            <input>
+            <i class="front">close</i>
+        </div>
+
+        @if (SearchHistory != null)
+        {
+            @foreach (var item in SearchHistory)
+            {
+                <button @onclick="() => SelectHistoryItem(item)">@item</button>
+            }
+        }
+
+    </menu>
+</div>
+
+@code {
+    [Parameter] public string Placeholder { get; set; } = "Search...";
+    [Parameter] public List<string> SearchHistory { get; set; }
+    [Parameter] public EventCallback<string> OnSelectHistoryItem { get; set; }
+    [Parameter] public EventCallback<string> OnSearchTextChanged { get; set; }
+
+    private string searchText;
+
+    private string SearchText
+    {
+        get => searchText;
+        set
+        {
+            if (searchText != value)
+            {
+                searchText = value;
+                OnSearchTextChanged.InvokeAsync(value);
+            }
+        }
+    }
+
+    private void ClearSearch()
+    {
+        SearchText = string.Empty;
+    }
+
+    private async Task SelectHistoryItem(string item)
+    {
+        await OnSelectHistoryItem.InvokeAsync(item);
+    }
+}

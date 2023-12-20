@@ -1,0 +1,15 @@
+@namespace Moka.Beer
+@inherits MokaComponentBase
+
+<article style="@Style" class="@Class @Position.GetEnumCssClass() @VerticalAlignment.GetEnumCssClass() @HorizontalAlignment.GetEnumCssClass() @Size.GetEnumCssClass()">
+    @ChildContent
+</article>
+
+@code {
+    [Parameter] public Position Position { get; set; } = Position.Default;
+    [Parameter] public Alignment VerticalAlignment { get; set; } = Alignment.Default;
+    [Parameter] public Alignment HorizontalAlignment { get; set; } = Alignment.MiddleAlign;
+    [Parameter] public Size Size { get; set; } = Size.Default;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    
+}

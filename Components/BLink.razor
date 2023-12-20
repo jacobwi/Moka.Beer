@@ -1,14 +1,15 @@
-﻿@using Microsoft.AspNetCore.Components.Routing
-@namespace Moka.Beer
+﻿@namespace Moka.Beer
+@using Microsoft.AspNetCore.Components.Routing
+@inherits MokaComponentBase
 @if (Href is "/" or "")
 {
-    <NavLink href="@Href" Match="NavLinkMatch.All">
+    <NavLink class="@Class" href="@Href" Match="NavLinkMatch.All">
         @ChildContent
     </NavLink>
 }
 else
 {
-    <NavLink href="@Href">
+    <NavLink class="@Class" href="@Href">
         @ChildContent
     </NavLink>
 }

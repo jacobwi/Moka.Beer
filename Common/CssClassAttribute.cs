@@ -16,7 +16,7 @@ namespace Moka.Beer.Common;
 /// </code>
 ///     In this example, the ComponentName property is assigned the CSS class "my-component".
 /// </example>
-[AttributeUsage(AttributeTargets.Field)]
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 public class CssClassAttribute : Attribute
 {
     /// <summary>

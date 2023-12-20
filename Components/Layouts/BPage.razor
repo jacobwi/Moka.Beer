@@ -1,6 +1,6 @@
 @namespace Moka.Beer
-
-<div class="page @(Active ? "active" : "")">
+@inherits MokaComponentBase
+<div style="@Style" class="@Class page @(Active ? "active" : "")">
     @ChildContent
 </div>
 
