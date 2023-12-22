@@ -1,0 +1,25 @@
+@namespace Moka.Beer
+@inherits MokaComponentBase
+
+<div class="@Small.GetEnumCssClass() @Medium.GetEnumCssClass() @Large.GetEnumCssClass()">
+    @if (IsInBGrid)
+    {
+        @ChildContent
+    }
+    else
+    {
+        <p>ERROR: BGridItem must be a child of BGrid</p>
+    }
+</div>
+
+@code {
+    [Parameter] public GridSize Small { get; set; } = GridSize.S12;
+    [Parameter] public GridSize Medium { get; set; }
+    [Parameter] public GridSize Large { get; set; }
+
+    [CascadingParameter] protected BGrid ParentBGrid { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private bool IsInBGrid => ParentBGrid != null;
+}

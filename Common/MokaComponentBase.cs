@@ -1,46 +1,76 @@
+#region
+
 using Microsoft.AspNetCore.Components;
 using Moka.Beer.Common.Enums;
 
+#endregion
+
 namespace Moka.Beer.Common;
 
+/// <summary>
+///     Base class for Moka components. This class contains common properties that can be used by all Moka components.
+/// </summary>
 public class MokaComponentBase : ComponentBase
 {
     /// <summary>
-    /// User class names, separated by space.
+    ///     Gets or sets the user class names, separated by space.
     /// </summary>
-    [Parameter] 
+    [Parameter]
     public string? Class { get; set; }
-    
-    
+
+
     /// <summary>
-    /// User styles, applied on top of the component's own classes and styles.
+    ///     Gets or sets the user styles, applied on top of the component's own classes and styles.
     /// </summary>
     [Parameter]
     public string? Style { get; set; }
-    
+
     /// <summary>
-    /// Use Tag to attach any user data object to the component.
+    ///     Gets or sets the Tag property to attach any user data object to the component.
     /// </summary>
     [Parameter]
     public object? Tag { get; set; }
 
     /// <summary>
-    /// The margin to use between the component and other components.
+    ///     Gets or sets the margin to use between the component and other components.
     /// </summary>
     [Parameter]
     public Margin Margin { get; set; } = Margin.NoMargin;
 
-    
+
     /// <summary>
-    /// The padding to use between the component and other components.
+    ///     Gets or sets the padding to use between the component and other components.
     /// </summary>
     [Parameter]
-    public Padding Padding { get; set; } = Enums.Padding.NoPadding;
+    public Padding Padding { get; set; } = Padding.NoPadding;
 
-    
     /// <summary>
-    /// Additional classes to be applied to the component.
+    ///     Gets or sets the position of the component.
     /// </summary>
-    [Parameter] public string AdditionalClasses { get; set; } = string.Empty;
+    [Parameter]
+    public Position Position { get; set; } = Position.Default;
 
+    /// <summary>
+    ///     Gets or sets the alignment of the component.
+    /// </summary>
+    [Parameter]
+    public Alignment Alignment { get; set; } = Alignment.Default;
+
+    /// <summary>
+    ///     Gets or sets the theme of the component.
+    /// </summary>
+    [Parameter]
+    public Theme Theme { get; set; } = Theme.Default;
+
+    /// <summary>
+    ///     Gets or sets the color of the component.
+    /// </summary>
+    [Parameter]
+    public Color Color { get; set; } = Color.Default;
+
+    /// <summary>
+    ///     Gets or sets additional classes to be applied to the component.
+    /// </summary>
+    [Parameter]
+    public string AdditionalClasses { get; set; } = string.Empty;
 }

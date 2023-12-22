@@ -1,0 +1,15 @@
+@namespace Moka.Beer
+@inherits MokaComponentBase
+
+<div class="grid @Space.GetEnumCssClass() @VerticalAlignment.GetEnumCssClass() @HorizontalAlignment.GetEnumCssClass()">
+    <CascadingValue Value="this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter] public Space Space { get; set; } = Space.Default;
+    [Parameter] public Alignment VerticalAlignment { get; set; } = Alignment.Default;
+    [Parameter] public Alignment HorizontalAlignment { get; set; } = Alignment.MiddleAlign;
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

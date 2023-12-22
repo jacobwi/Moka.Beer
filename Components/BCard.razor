@@ -5,17 +5,17 @@
 @Position.GetEnumCssClass() 
 @VerticalAlignment.GetEnumCssClass()
  @HorizontalAlignment.GetEnumCssClass() @Size.GetEnumCssClass()">
-    
-    
-      <img class="responsive small top-round" src="/beer-and-woman.jpg"><!----><!---->
-      <div class="padding">
-        <h5>@Header</h5>
-        <p>@Body</p>
-        <nav>
-          <button class="primary">Button</button>
-        </nav>
-      </div>
 
+
+    @* <img class="responsive small top-round" src="/beer-and-woman.jpg"><!----><!----> *@
+    @* <div class="padding"> *@
+    @*   <h5>@Header</h5> *@
+    @*   <p>@Body</p> *@
+    @*   <nav> *@
+    @*     <button class="primary">Button</button> *@
+    @*   </nav> *@
+    @* </div> *@
+    @ChildContent
 </article>
 
 
@@ -23,11 +23,10 @@
     [Parameter] public Position Position { get; set; } = Position.Default;
     [Parameter] public Alignment VerticalAlignment { get; set; } = Alignment.Default;
     [Parameter] public Alignment HorizontalAlignment { get; set; } = Alignment.MiddleAlign;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public RenderFragment? Header { get; set; }
-    [Parameter]
-    public RenderFragment? Footer { get; set; }
+    [Parameter] public RenderFragment? Header { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
 
     [Parameter] public RenderFragment? Body { get; set; }
     [Parameter] public Size Size { get; set; } = Size.Default;

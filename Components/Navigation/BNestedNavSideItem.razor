@@ -23,7 +23,7 @@
 @code {
     [Parameter] public List<MenuItem> MenuItems { get; set; }
 
-    private string? GetIconValue(string iconName)
+    private string? GetIconValue(string? iconName)
     {
         // Split the string into its components
         var parts = iconName.Split('.');

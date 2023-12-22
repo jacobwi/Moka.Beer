@@ -10,9 +10,5 @@ public enum InputType
     [CssClass("time")] Time,
     [CssClass("tel")] Phone,
     [CssClass("url")] Url,
-    [CssClass("number")] Number,
-
-
-
-
+    [CssClass("number")] Number
 }
