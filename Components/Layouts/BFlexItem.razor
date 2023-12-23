@@ -1,0 +1,19 @@
+@namespace Moka.Beer
+@inherits MokaComponentBase
+<div class="@GetFlexItemClass()">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public FlexGrowShrink GrowShrink { get; set; } = FlexGrowShrink.Default;
+    [Parameter] public FlexBasis Basis { get; set; } = FlexBasis.Default;
+    [Parameter] public Order ItemOrder { get; set; } = Order.Default;
+    [Parameter] public FlexAlignSelf AlignSelf { get; set; } = FlexAlignSelf.Default;
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private string GetFlexItemClass()
+    {
+        return $"{GrowShrink.GetEnumCssClass()} {Basis.GetEnumCssClass()} order-{ItemOrder.GetEnumCssClass()} {AlignSelf.GetEnumCssClass()}";
+    }
+
+}

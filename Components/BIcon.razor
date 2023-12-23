@@ -32,16 +32,17 @@
     [Parameter] public bool IsImage { get; set; }
     [Parameter] public string ImageUrl { get; set; } = "";
     private bool _isSvg;
+
     [Parameter]
-    public bool IsSvg 
-    { 
+    public bool IsSvg
+    {
         get => _isSvg;
         set
         {
             if (_isSvg == value) return; // Check to prevent recursive calls
             _isSvg = value;
             IsIcon = !value; // Set IsIcon to the inverse of IsSvg
-        } 
+        }
     }
 
     [Parameter] public string ViewBox { get; set; } = "0 0 24 24";
@@ -51,9 +52,10 @@
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public Form Form { get; set; } = Form.Fill; // Default form
     [Parameter] public Size Size { get; set; } = Size.Medium; // Default size
-    [Parameter] public Color Color { get; set; } = Color.Default;
+
 
     private bool _isIcon = true; // Default value
+
     [Parameter]
     public bool IsIcon
     {
@@ -65,9 +67,10 @@
             _isSvg = !value; // Set IsSvg to the inverse of IsIcon
         }
     }
+
     [Parameter] public string SvgIcon { get; set; } = "";
 
     [Parameter] public Icon Icon { get; set; } = new("");
-    
+
 
 }

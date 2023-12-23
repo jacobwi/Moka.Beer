@@ -56,6 +56,10 @@ public class MokaComponentBase : ComponentBase
     [Parameter]
     public Alignment Alignment { get; set; } = Alignment.Default;
 
+
+    [Parameter] public Alignment VerticalAlignment { get; set; } = Alignment.Default;
+    [Parameter] public Alignment HorizontalAlignment { get; set; } = Alignment.MiddleAlign;
+
     /// <summary>
     ///     Gets or sets the theme of the component.
     /// </summary>

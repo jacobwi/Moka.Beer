@@ -1,7 +1,7 @@
 @namespace Moka.Beer
 @inherits MokaComponentBase
 
-<footer class="@(IsFixed ? IsFixed.GetBoolCssClass() : "")">
+<footer class="@(IsFixed ? this.GetBoolCssClass(x => x.IsFixed) : "")">
     @switch (Type)
     {
         case Typography.H1:
@@ -27,7 +27,6 @@
             <p class="@GetClasses()">@ChildContent</p>
             break;
     }
-    @ChildContent
 </footer>
 
 @code {

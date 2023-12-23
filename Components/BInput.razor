@@ -1,8 +1,8 @@
 @namespace Moka.Beer
 @inherits MokaComponentBase
-<div class="@Class field @(ContainsLabel ? ContainsLabel.GetBoolCssClass(): "") @(IsInvalid ? IsInvalid.GetBoolCssClass() : "") @Alignment.GetEnumCssClass() @Position.GetEnumCssClass() @Size.GetEnumCssClass() @Form.GetEnumCssClass() ">
+<div class="@Class field @(ContainsLabel ? this.GetBoolCssClass(x => x.ContainsLabel) : "") @(IsInvalid ? this.GetBoolCssClass(x => x.IsInvalid) : "") @Alignment.GetEnumCssClass() @Position.GetEnumCssClass() @Size.GetEnumCssClass() @Form.GetEnumCssClass() ">
     <input @onclick="OnClick" type="@Type" value="@Value" @oninput="OnInput" placeholder="@Placeholder"/>
-    @if(ContainsLabel)
+    @if (ContainsLabel)
     {
         <label>@Label</label>
     }
@@ -15,20 +15,17 @@
     {
         <span class="error">@ErrorMessage</span>
     }
-    
-    @if(IsLoading)
+
+    @if (IsLoading)
     {
         <progress class="circle"></progress>
     }
 </div>
 
 @code {
-    
+
     [Parameter] public InputType Type { get; set; } = InputType.Text;
     [Parameter] public Size Size { get; set; } = Size.Default;
-    [Parameter] public Position Position { get; set; } = Position.Default;
-    [Parameter] public Alignment Alignment { get; set; } = Alignment.Default;
-    [Parameter] public Color Color { get; set; } = Color.Default;
     [Parameter, CssClass("disabled")] public bool IsDisabled { get; set; }
     [Parameter] public bool IsReadOnly { get; set; }
     [Parameter] public bool IsRequired { get; set; }

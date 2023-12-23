@@ -1,0 +1,21 @@
+@namespace Moka.Beer
+@inherits MokaComponentBase
+<div class="@GetFlexContainerClass()" style="@Height.GetEnumCssClass()">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public Flex Direction { get; set; } = Flex.Row;
+    [Parameter] public FlexJustify Justify { get; set; } = FlexJustify.Default;
+    [Parameter] public FlexItems FlexItems { get; set; } = FlexItems.Default;
+
+    [Parameter] public FlexAlignItems Align { get; set; } = FlexAlignItems.Default;
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public Height Height { get; set; } = Height.Auto;
+
+    private string GetFlexContainerClass()
+    {
+        return $"flex-container {FlexItems.GetEnumCssClass()} {Height.GetEnumCssClass()} {Direction.GetEnumCssClass()} {Justify.GetEnumCssClass()} {Align.GetEnumCssClass()}";
+    }
+
+}

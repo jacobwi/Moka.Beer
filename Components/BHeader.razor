@@ -1,45 +1,62 @@
 @namespace Moka.Beer
 @inherits MokaComponentBase
 
-<header class="transparent  @(IsFixed ? IsFixed.GetBoolCssClass() : "")">
+<header class="transparent  @(IsFixed ? this.GetBoolCssClass(x => x.IsFixed) : "")">
     @switch (Type)
     {
         case Typography.H1:
-            <h1 class="@GetClasses()">@ChildContent</h1>
+            <h1 class="@Type.GetEnumCssClass()">@ChildContent</h1>
             break;
         case Typography.H2:
-            <h2 class="@GetClasses()">@ChildContent</h2>
+            <h2 class="@Type.GetEnumCssClass()">@ChildContent</h2>
             break;
         case Typography.H3:
-            <h3 class="@GetClasses()">@ChildContent</h3>
+            <h3 class="@Type.GetEnumCssClass()">@ChildContent</h3>
             break;
         case Typography.H4:
-            <h4 class="@GetClasses()">@ChildContent</h4>
+            <h4 class="@Type.GetEnumCssClass()">@ChildContent</h4>
             break;
         case Typography.H5:
-            <h5 class="@GetClasses()">@ChildContent</h5>
+            <h5 class="@Type.GetEnumCssClass()">@ChildContent</h5>
             break;
         case Typography.H6:
-            <h6 class="@GetClasses()">@ChildContent</h6>
+            <h6 class="@Type.GetEnumCssClass()">@ChildContent</h6>
+            break;
+        case Typography.Italic:
+            break;
+        case Typography.Bold:
+            break;
+        case Typography.Underline:
+            break;
+        case Typography.Overline:
+            break;
+        case Typography.Upper:
+            break;
+        case Typography.Lower:
+            break;
+        case Typography.Capitalize:
+            break;
+        case Typography.Link:
+            break;
+        case Typography.SmallText:
+            break;
+        case Typography.MediumText:
+            break;
+        case Typography.LargeText:
             break;
         case Typography.Paragraph:
         default:
-            <p class="@GetClasses()">@ChildContent</p>
+            <p class="@Type.GetEnumCssClass()">@ChildContent</p>
             break;
     }
-    @ChildContent
 </header>
 
 
 @code {
     [Parameter] public string? Title { get; set; }
-    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
     [Parameter, CssClass("fixed")] public bool IsFixed { get; set; }
     [Parameter] public Typography Type { get; set; } = Typography.Paragraph;
 
-    private string GetClasses()
-    {
-        return $"{Type.GetEnumCssClass()} {AdditionalClasses}".Trim();
-    }
 
 }
