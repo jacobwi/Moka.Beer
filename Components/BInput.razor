@@ -26,14 +26,14 @@
 
     [Parameter] public InputType Type { get; set; } = InputType.Text;
     [Parameter] public Size Size { get; set; } = Size.Default;
-    [Parameter, CssClass("disabled")] public bool IsDisabled { get; set; }
+    [Parameter] [CssClass("disabled")] public bool IsDisabled { get; set; }
     [Parameter] public bool IsReadOnly { get; set; }
     [Parameter] public bool IsRequired { get; set; }
-    [Parameter, CssClass("invalid")] public bool IsInvalid { get; set; }
+    [Parameter] [CssClass("invalid")] public bool IsInvalid { get; set; }
     [Parameter] public bool IsHelperText { get; set; }
     [Parameter] public string HelperText { get; set; } = "";
 
-    [Parameter, CssClass("label")] public bool ContainsLabel { get; set; }
+    [Parameter] [CssClass("label")] public bool ContainsLabel { get; set; }
     [Parameter] public bool IsLoading { get; set; }
     [Parameter] public Form Form { get; set; } = Form.Fill; // Default form
     [Parameter] public string Placeholder { get; set; } = "";

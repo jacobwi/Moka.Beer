@@ -55,7 +55,7 @@
 @code {
     [Parameter] public string? Title { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
-    [Parameter, CssClass("fixed")] public bool IsFixed { get; set; }
+    [Parameter] [CssClass("fixed")] public bool IsFixed { get; set; }
     [Parameter] public Typography Type { get; set; } = Typography.Paragraph;
 
 
